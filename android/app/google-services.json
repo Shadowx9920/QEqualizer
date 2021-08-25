@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "579762234994",
+    "project_id": "qequalizer-84df1",
+    "storage_bucket": "qequalizer-84df1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579762234994:android:654b3db1eb8aa1eec844eb",
+        "android_client_info": {
+          "package_name": "com.outahar.qequalizer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579762234994-ljtugupght2d0uj3rou37t1taa4oal3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTat0o4b8jgzqYs1kZS0gtbiketqL9zNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579762234994-ljtugupght2d0uj3rou37t1taa4oal3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
