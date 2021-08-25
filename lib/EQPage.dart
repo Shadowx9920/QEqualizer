@@ -8,7 +8,6 @@ import 'package:bass_boost/bass_boost.dart';
 import 'Features/BassBooster.dart';
 import 'Features/VolumeSlider.dart';
 import 'Features/Equalizer.dart';
-import 'Features/BackroundManager.dart';
 import 'Features/ads.dart';
 
 class EQ extends StatefulWidget {
@@ -19,7 +18,7 @@ class EQ extends StatefulWidget {
 class _EQState extends State<EQ> {
   Future<List<int>> _bandLvlRange;
   BassBoost boost;
-  bool enable = true;
+  bool enable = false;
 
   void _backroundLogic() async {
     bool hasPermissions = await FlutterBackground.hasPermissions;
@@ -97,11 +96,6 @@ class _EQState extends State<EQ> {
               bottom: 0,
               left: 0,
               right: 0,
-            ),
-            Positioned(
-              child: BackroundManager(
-                enable: enable,
-              ),
             ),
           ],
         ),

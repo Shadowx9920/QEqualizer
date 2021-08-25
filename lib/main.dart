@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:qequalizer/Features/BackroundManager.dart';
 import 'package:qequalizer/Providers/Themes.dart';
 import 'package:qequalizer/SettingsPage.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,8 @@ void main() async {
     print("Accepted permission: $accepted");
   });
   Provider.debugCheckInvalidValueType = null;
+  BackroundManager backround = new BackroundManager();
+  backround.initBackround();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) async {
       runApp(

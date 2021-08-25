@@ -1,16 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_background/flutter_background.dart';
 
-class BackroundManager extends StatefulWidget {
-  const BackroundManager({Key key, @required this.enable}) : super(key: key);
-  final bool enable;
-
-  @override
-  _BackroundManagerState createState() => _BackroundManagerState();
-}
-
-class _BackroundManagerState extends State<BackroundManager> {
-  void _initBackround() async {
+class BackroundManager {
+  void initBackround() async {
     final androidConfig = FlutterBackgroundAndroidConfig(
       notificationTitle: "QEqualizer",
       notificationImportance: AndroidNotificationImportance.High,
@@ -21,24 +12,12 @@ class _BackroundManagerState extends State<BackroundManager> {
     await FlutterBackground.initialize(androidConfig: androidConfig);
   }
 
-  void _backroundLogic() async {
+  void backroundLogic(bool enable) async {
     bool hasPermissions = await FlutterBackground.hasPermissions;
-    if (hasPermissions && widget.enable) {
+    if (hasPermissions && enable) {
       await FlutterBackground.enableBackgroundExecution();
-    } else if (!widget.enable) {
+    } else if (enable) {
       FlutterBackground.disableBackgroundExecution();
     }
-  }
-
-  @override
-  void initState() {
-    _initBackround();
-    _backroundLogic();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
