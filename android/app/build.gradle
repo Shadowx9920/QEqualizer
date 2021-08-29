@@ -75,6 +75,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.google.android.gms:play-services-ads:20.2.0'
+    implementation 'com.google.ads.mediation:facebook:6.5.1.1'
 }
 buildscript {
     repositories {

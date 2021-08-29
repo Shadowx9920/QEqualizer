@@ -10,7 +10,7 @@
         android:icon="@mipmap/launcher_icon">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8029832693124619~9711044656"/>
+            android:value="ca-app-pub-7511772989365508~4153186903"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
