@@ -2,6 +2,7 @@ import 'package:equalizer/equalizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:provider/provider.dart';
+import 'package:qequalizer/Providers/Screen-Config.dart';
 import 'package:qequalizer/Providers/Themes.dart';
 
 class FutureEqualizer extends StatelessWidget {
@@ -59,6 +60,7 @@ class _CustomEQState extends State<CustomEQ> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     int bandId = 0;
     return FutureBuilder<List<int>>(
       future: fetchCenterBandfreqs,
@@ -80,37 +82,41 @@ class _CustomEQState extends State<CustomEQ> {
               ),
               Divider(),
               Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.all(5.0),
                 child: FutureBuilder<List<String>>(
                   future: fetchPresets,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final presets = snapshot.data;
                       if (presets.isEmpty) return Text('No presets available!');
-                      return DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Available Presets',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(100),
+                      return Container(
+                        height: SizeConfig.blockSizeVertical * 8,
+                        width: SizeConfig.blockSizeHorizontal * 90,
+                        child: DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Available Presets',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100),
+                            ),
                           ),
+                          value: _selectedValue,
+                          onChanged: widget.enabled
+                              ? (String value) {
+                                  setState(() {
+                                    _selectedValue = value;
+                                    Equalizer.setPreset(value);
+                                    fetchCenterBandfreqs =
+                                        Equalizer.getCenterBandFreqs();
+                                  });
+                                }
+                              : null,
+                          items: presets.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         ),
-                        value: _selectedValue,
-                        onChanged: widget.enabled
-                            ? (String value) {
-                                setState(() {
-                                  _selectedValue = value;
-                                  Equalizer.setPreset(value);
-                                  fetchCenterBandfreqs =
-                                      Equalizer.getCenterBandFreqs();
-                                });
-                              }
-                            : null,
-                        items: presets.map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
                       );
                     } else if (snapshot.hasError)
                       return Text(snapshot.error);
@@ -159,7 +165,8 @@ class _SliderBandsState extends State<SliderBands> {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height / 2.8,
+          height: SizeConfig.blockSizeVertical * 30,
+          width: SizeConfig.blockSizeHorizontal * 15,
           child: FutureBuilder<int>(
             future: _getBandLevel,
             builder: (context, snapshot) {
@@ -177,7 +184,6 @@ class _SliderBandsState extends State<SliderBands> {
                         ),
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      padding: EdgeInsets.all(0),
                       child: Icon(
                         Icons.arrow_drop_up_rounded,
                         size: 25,

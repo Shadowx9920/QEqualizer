@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:equalizer/equalizer.dart';
 import 'package:flutter_background/flutter_background.dart';
+import 'package:qequalizer/Providers/Screen-Config.dart';
 import 'package:qequalizer/Providers/Themes.dart';
 import 'package:provider/provider.dart';
 import 'package:bass_boost/bass_boost.dart';
@@ -48,6 +49,7 @@ class _EQState extends State<EQ> {
   @override
   Widget build(BuildContext context) {
     Themes theme = Provider.of<Themes>(context);
+    SizeConfig().init(context);
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButton: IconButton(
@@ -71,22 +73,17 @@ class _EQState extends State<EQ> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FutureEqualizer(bandLvlRange: _bandLvlRange, enable: enable),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        BASS(
-                          enable: enable,
-                          boost: boost,
-                        ),
-                        Container(
-                          child: VolumeV(
-                            enable: enable,
-                          ),
-                        )
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      BASS(
+                        enable: enable,
+                        boost: boost,
+                      ),
+                      VolumeV(
+                        enable: enable,
+                      )
+                    ],
                   ),
                 ],
               ),

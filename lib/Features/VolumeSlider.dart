@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qequalizer/Providers/Screen-Config.dart';
 import 'package:qequalizer/Providers/Themes.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:volume_controller/volume_controller.dart';
@@ -32,12 +33,15 @@ class _VolumeVState extends State<VolumeV> {
   @override
   Widget build(BuildContext context) {
     Themes theme = Provider.of<Themes>(context);
+    SizeConfig().init(context);
     return FutureBuilder(
         future: _val,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             double val = snapshot.data;
             return Container(
+              height: SizeConfig.blockSizeVertical * 23,
+              width: SizeConfig.blockSizeHorizontal * 35,
               child: SleekCircularSlider(
                 initialValue: val * 100,
                 appearance: CircularSliderAppearance(

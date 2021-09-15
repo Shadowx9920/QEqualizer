@@ -130,7 +130,8 @@ class _BannerState extends State<AdBanner> {
     super.initState();
     _banner = BannerAd(
         size: AdSize.banner,
-        adUnitId: "ca-app-pub-7511772989365508/7418833863",
+        adUnitId:
+            BannerAd.testAdUnitId, //"ca-app-pub-7511772989365508/7418833863",
         listener: BannerAdListener(onAdLoaded: (ad) {
           setState(() {
             _banner = ad;

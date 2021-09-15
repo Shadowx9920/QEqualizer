@@ -8,7 +8,6 @@ class Themes with ChangeNotifier {
   Color _color;
   ThemeData _themeData = ThemeData(
     brightness: Brightness.light,
-    fontFamily: 'NovaRound',
   );
   Color get color => _color;
   ThemeData get themeData => _themeData;
@@ -25,12 +24,10 @@ class Themes with ChangeNotifier {
     if (_brightnessV == 0) {
       _themeData = ThemeData(
         brightness: Brightness.dark,
-        fontFamily: 'NovaRound',
       );
     } else {
       _themeData = ThemeData(
         brightness: Brightness.light,
-        fontFamily: 'NovaRound',
       );
     }
   }

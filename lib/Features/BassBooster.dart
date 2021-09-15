@@ -1,6 +1,7 @@
 import 'package:bass_boost/bass_boost.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qequalizer/Providers/Screen-Config.dart';
 import 'package:qequalizer/Providers/Themes.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -25,7 +26,10 @@ class _BASSState extends State<BASS> {
   @override
   Widget build(BuildContext context) {
     Themes theme = Provider.of<Themes>(context);
+    SizeConfig().init(context);
     return Container(
+      height: SizeConfig.blockSizeVertical * 23,
+      width: SizeConfig.blockSizeHorizontal * 35,
       child: SleekCircularSlider(
         max: 1000,
         initialValue: str,
